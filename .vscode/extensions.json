@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ms-azuretools.vscode-docker",
+        "wolfieshorizon.python-auto-venv",
+        "blackboxapp.blackbox"
+    ]
+}

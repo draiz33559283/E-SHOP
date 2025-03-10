@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- Link to Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Link to Chart.js for graphs -->
+    <script src="script.js" defer></script> <!-- Link to the JavaScript file -->
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center">
+            <h1 class="text-3xl font-bold">Admin Dashboard</h1>
+        </div>
+        <div class="relative">
+            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-yellow-600 transition" onclick="toggleUserProfile()">User Profile</button>
+        </div>
+    </header>
+    <div class="flex">
+        <nav class="bg-purple-800 text-white w-1/4 p-4">
+            <h2 class="text-lg font-semibold">Navigation</h2>
+            <ul>
+                <li class="my-2"><a href="#user-management" class="hover:underline">User Management</a></li>
+                <li class="my-2"><a href="#product-management" class="hover:underline">Product Management</a></li>
+                <li class="my-2"><a href="#inventory-management" class="hover:underline">Inventory Management</a></li>
+                <li class="my-2"><a href="#order-management" class="hover:underline">Order Management</a></li>
+                <li class="my-2"><a href="#sales-analytics" class="hover:underline">Sales Analytics Reports</a></li>
+                <li class="my-2"><a href="#marketing-tools" class="hover:underline">Marketing Tools</a></li>
+                <li class="my-2"><a href="#payment-management" class="hover:underline">Payment Management</a></li>
+                <li class="my-2"><a href="#customer-support" class="hover:underline">Customer Support Tools</a></li>
+                <li class="my-2"><a href="#content-management" class="hover:underline">Website Content Management</a></li>
+                <li class="my-2"><a href="#roles-permissions" class="hover:underline">Roles and Permission Management</a></li>
+                <li class="my-2"><a href="#notifications-alerts" class="hover:underline">Notifications and Alerts</a></li>
+                <li class="my-2"><a href="#shipping-logistics" class="hover:underline">Shipping and Logistics Management</a></li>
+                <li class="my-2"><a href="#seo-metadata" class="hover:underline">SEO and Metadata Management</a></li>
+                <li class="my-2"><a href="#system-settings" class="hover:underline">System Settings</a></li>
+                <li class="my-2"><a href="#security-compliance" class="hover:underline">Security and Compliance</a></li>
+                <li class="my-2"><a href="#api-integration" class="hover:underline">API and Integration Management</a></li>
+                <li class="my-2"><a href="#performance-monitoring" class="hover:underline">Performance Monitoring</a></li>
+                <li class="my-2"><a href="#resume-task" class="hover:underline">Resume Task</a></li> <!-- New link for Resume Task -->
+            </ul>
+        </nav>
+        <main class="flex-1 p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- User Management Section -->
+                <section id="user-management" class="bg-white rounded-lg shadow-md p-6 mb-4 transition-transform transform hover:scale-105">
+                    <h2 class="text-xl font-semibold">User Management</h2>
+                    <table class="min-w-full bg-white border border-gray-300">
+                        <thead>
+                            <tr>
+                                <th class="border px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- User rows will be populated here -->
+                        </tbody>
+                    </table>
+                    <button class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition mt-4" onclick="showAddUserModal()">Add User</button>
+                </section>
+
+                <!-- Product Management Section -->
+                <section id="product-management" class="bg-white rounded-lg shadow-md p-6 mb-4 transition-transform transform hover:scale-105">
+                    <h2 class="text-xl font-semibold">Product Management</h2>
+                    <table class="min-w-full bg-white border border-gray-300">
+                        <thead>
+                            <tr>
+                                <th class="border px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Product rows will be populated here -->
+                        </tbody>
+                    </table>
+                    <button class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition mt-4" onclick="showAddProductModal()">Add Product</button>
+                </section>
+
+                <!-- Resume Task Section -->
+                <section id="resume-task" class="bg-white rounded-lg shadow-md p-6 mb-4 transition-transform transform hover:scale-105">
+                    <h2 class="text-xl font-semibold">Resume Task</h2>
+                    <button class="bg-gradient-to-r from-blue-400 to-green-500 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition mt-4" onclick="resumeTask()">Resume Task</button>
+                </section>
+
+                <!-- Performance Monitoring Section -->
+                <section id="performance-monitoring" class="bg-white rounded-lg shadow-md p-6 mb-4 transition-transform transform hover:scale-105">
+                    <h2 class="text-xl font-semibold">Performance Monitoring</h2>
+                    <canvas id="performanceGraph" class="mt-4"></canvas>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Profile Modals -->
+    <div id="userProfileModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 w-1/3">
+            <h2 class="text-xl font-semibold mb-4">User Profile</h2>
+            <button class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded shadow-lg hover:shadow-xl transition" onclick="showSignUp()">Sign Up</button>
+            <button class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded shadow-lg hover:shadow-xl transition" onclick="showLogin()">Login</button>
+            <button class="mt-4 text-red-500" onclick="toggleUserProfile()">Close</button>
+        </div>
+    </div>
+
+    <div id="signUpModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 w-1/3">
+            <h2 class="text-xl font-semibold mb-4">Sign Up</h2>
+            <form>
+                <input type="text" placeholder="Username" class="border p-2 mb-2 w-full rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                <input type="email" placeholder="Email" class="border p-2 mb-2 w-full rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                <input type="password" placeholder="Password" class="border p-2 mb-2 w-full rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                <button type="submit" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded shadow-lg hover:shadow-xl transition">Sign Up</button>
+            </form>
+            <button class="mt-4 text-red-500" onclick="toggleSignUp()">Close</button>
+        </div>
+    </div>
+
+    <div id="loginModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-6 w-1/3">
+            <h2 class="text-xl font-semibold mb-4">Login</h2>
+            <form>
+                <input type="text" placeholder="Username or Email" class="border p-2 mb-2 w-full rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                <input type="password" placeholder="Password" class="border p-2 mb-2 w-full rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                <button type="submit" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded shadow-lg hover:shadow-xl transition">Login</button>
+            </form>
+            <button class="mt-4 text-red-500" onclick="toggleLogin()">Close</button>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center p-4">
+        <p>&copy; 2025 OSONGO ELECTRONICS</p>
+    </footer>
+    <script>
+        // Sample data for the performance graph
+        const ctx = document.getElementById('performanceGraph').getContext('2d');
+        const performanceGraph = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Performance Metrics',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function toggleUserProfile() {
+            const modal = document.getElementById('userProfileModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function showSignUp() {
+            document.getElementById('signUpModal').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function toggleSignUp() {
+            document.getElementById('signUpModal').classList.toggle('hidden');
+        }
+
+        function toggleLogin() {
+            document.getElementById('loginModal').classList.toggle('hidden');
+        }
+
+        function resumeTask() {
+            // Logic to resume the task
+            alert("Task resumed!");
+        }
+    </script>
+</body>
+</html>
